@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/koepk/Desktop/RPNCalculator/Solver.c
+Solver.h
+C:/Users/koepk/Desktop/RPNCalculator/Solver.h
+Stack.h
+C:/Users/koepk/Desktop/RPNCalculator/Stack.h
+
+C:/Users/koepk/Desktop/RPNCalculator/Solver.h
+
+C:/Users/koepk/Desktop/RPNCalculator/Stack.c
+Stack.h
+C:/Users/koepk/Desktop/RPNCalculator/Stack.h
+stdio.h
+-
+
+C:/Users/koepk/Desktop/RPNCalculator/Stack.h
+
+C:/Users/koepk/Desktop/RPNCalculator/main.c
+stdio.h
+-
+Solver.h
+C:/Users/koepk/Desktop/RPNCalculator/Solver.h
+
