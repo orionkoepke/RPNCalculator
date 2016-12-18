@@ -8,6 +8,10 @@
 
 double preformOperation(double firstNum, double secondNum, char* operator);
 
+int isNumber(char* string);
+
+double getNumber(char* string);
+
 double getOutput(char* input);
 
 #endif //RPNCALCULATOR_SOLVER_H

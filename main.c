@@ -8,7 +8,9 @@
 
 int main(int agrc, const char* argv)
 {
-    printf("%f\n", preformOperation(5, 5, "/"));
+    const char str[6] = "3 3 *";
+
+    printf("%lf\n", getOutput(&str));
     printf("Done\n");
     return 1;
 }
