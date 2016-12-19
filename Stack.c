@@ -3,10 +3,17 @@
  * Date Last Edited: 12/18/16
  */
 
+#include <stdio.h>
+#include <malloc.h>
+
 #include "Stack.h"
 
-#include <stdio.h>
-
+/* void push(Stack* stack, double num)
+ * Stack* stack - the current stack
+ * double num - the number to be pushed on to the stack
+ * This function creates a new node to store num and makes that node the new head
+ * of stack and makes the old head of stack the next node of the new node.
+ */
 void push(Stack* stack, double num)
 {
     Node* newHead = (Node *) malloc(sizeof(Node));
@@ -16,6 +23,10 @@ void push(Stack* stack, double num)
     stack->length = stack->length + 1;
 }
 
+/* double peek(Stack stack)
+ * stack - the current stack
+ * This function returns the number in the head node of the stack.
+ */
 double peek(Stack stack)
 {
     if(stack.head != 0)
@@ -28,6 +39,11 @@ double peek(Stack stack)
     }
 }
 
+/* void push(Stack* stack, double num)
+ * Stack* stack - the current stack
+ * This function makes the head of the stack be the next node of the current head and then
+ * frees the current head.
+ */
 void pop(Stack* stack)
 {
     if (stack->head != 0)
@@ -39,3 +55,5 @@ void pop(Stack* stack)
         free(head);
     }
 }
+
+//TODO: Make a popALL function

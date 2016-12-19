@@ -6,12 +6,10 @@
 #ifndef RPNCALCULATOR_SOLVER_H
 #define RPNCALCULATOR_SOLVER_H
 
-double preformOperation(double firstNum, double secondNum, char* operator);
-
-int isNumber(char* string);
-
-double getNumber(char* string);
-
+/* double getOutput(char* input)
+ * char* input - a formula in reverse polish notation.
+ * This function takes in input and returns the value of input solved.
+ */
 double getOutput(char* input);
 
 #endif //RPNCALCULATOR_SOLVER_H
