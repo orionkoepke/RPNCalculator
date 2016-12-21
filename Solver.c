@@ -112,18 +112,22 @@ double preformOperation(double firstNum, double secondNum, char* operator)
 }
 
 /* double getOutput(char* input)
- * char* input - a formula in reverse polish notation.
+ * const char* input - an expression in reverse polish notation
  * This function takes in input and returns the value of input solved.
  */
-double getOutput(char* input)
+double getOutput(const char* input)
 {
     Stack stack;        //Where the values will be stored until they are needed.
     double firstNum;    //The first number in an expression when performing an operation.
     double secondNum;   //The second number in an expression when performing an operation.
     char* token;        //The number or operation the program is currently looking at.
+    char inputCopy[strlen(input) + 1]; //A copy of input so input is not changed.
+
+    //Copy input into inputCopy.
+    strncpy(inputCopy, input, sizeof(inputCopy));
 
     //Load token with the first token in input delimited by " ".
-    token = strtok(input, " ");
+    token = strtok(inputCopy, " ");
 
     //While token is not null.
     while(token)
