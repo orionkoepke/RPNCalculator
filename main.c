@@ -41,10 +41,11 @@ int correctNumArgs(int argc)
  */
 int main(int argc, const char* argv[])
 {
-    if(correctNumArgs(argc))
+    double output = 0;
+
+    if(correctNumArgs(argc) && getOutput(argv[1], &output))
     {
-        //TODO add a way to see if the expression is in proper reverse polish notation form.
-        printf("%s = %lf\n", argv[1], getOutput(argv[1]));
+        printf("%s = %lf\n", argv[1], output);
         return 1;
     }
     else

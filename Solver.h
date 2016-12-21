@@ -10,6 +10,6 @@
  * char* input - a formula in reverse polish notation.
  * This function takes in input and returns the value of input solved.
  */
-double getOutput(const char* input);
+double getOutput(const char* input, double* output);
 
 #endif //RPNCALCULATOR_SOLVER_H

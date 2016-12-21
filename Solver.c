@@ -113,15 +113,17 @@ double preformOperation(double firstNum, double secondNum, char* operator)
 
 /* double getOutput(char* input)
  * const char* input - an expression in reverse polish notation
- * This function takes in input and returns the value of input solved.
+ *
  */
-double getOutput(const char* input)
+double getOutput(const char* input, double* output)
 {
     Stack stack;        //Where the values will be stored until they are needed.
     double firstNum;    //The first number in an expression when performing an operation.
     double secondNum;   //The second number in an expression when performing an operation.
     char* token;        //The number or operation the program is currently looking at.
     char inputCopy[strlen(input) + 1]; //A copy of input so input is not changed.
+
+    //TODO Make sure stack is initialized
 
     //Copy input into inputCopy.
     strncpy(inputCopy, input, sizeof(inputCopy));
@@ -150,10 +152,9 @@ double getOutput(const char* input)
         else
         {
             printf("Error\n");
-
-            //TODO: free the stack.
-
-            return 0.00;
+            (*output) = 0;
+            //popAll(&stack); Fix This
+            return 0;
         }
 
         //Put the next token in input into token.
@@ -161,10 +162,7 @@ double getOutput(const char* input)
     }
 
     //The number on the top of the stack is the answer to input.
-    firstNum = peek(stack);
-    pop(&stack);
-
-    //TODO: Free the stack instead of just poping.
-
-    return firstNum;
+    (*output) = peek(stack);
+    //popAll(&stack); TODO Fix This
+    return 1;
 }

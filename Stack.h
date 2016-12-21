@@ -24,6 +24,6 @@ double peek(Stack stack);
 
 void pop(Stack* stack);
 
-//TODO: Make a popALL function
+void popAll(Stack* stack);
 
 #endif //RPNCALCULATOR_STACK_H

@@ -39,7 +39,7 @@ double peek(Stack stack)
     }
 }
 
-/* void push(Stack* stack, double num)
+/* void pop(Stack* stack, double num)
  * Stack* stack - the current stack
  * This function makes the head of the stack be the next node of the current head and then
  * frees the current head.
@@ -56,4 +56,17 @@ void pop(Stack* stack)
     }
 }
 
-//TODO: Make a popALL function
+/* void popAll(Stack* stack, double num)
+ * Stack* stack - the current stack
+ * This function frees the whole stack.
+ */
+//TODO Fix This
+void popAll(Stack* stack)
+{
+    printf("length :: %i\n", stack->length);
+    if(stack->head != 0)
+    {
+        pop(stack);
+        popAll(stack);
+    }
+}
