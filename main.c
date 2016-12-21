@@ -6,11 +6,20 @@
 #include <stdio.h>
 #include "Solver.h"
 
-int main(int agrc, const char* argv)
+int main(int argc, const char* argv[])
 {
-    const char str[6] = "3 3 *";
-
-    printf("%lf\n", getOutput(&str));
-    printf("Done\n");
-    return 1;
+    if(argc < 2)
+    {
+        printf("Not enough argumnets entered.\n");
+        return 0;
+    }
+    else if(argc > 2)
+    {
+        printf("Too many arguments entered.\n");
+        return 0;
+    }
+    else {
+        printf("%s = %lf\n", argv[1], getOutput(argv[1]));
+        return 1;
+    }
 }
