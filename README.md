@@ -21,7 +21,7 @@ you wish to solve in quotations.
 not a proper reverse polish notation expression or the answer to the proper
 reverse polish notation expression entered.
 
-#Examples
+### Examples
 `C:\Users\name\Desktop>RPNCalculator.exe "3 3 +"`
 
 `3 3 + = 6.000`
