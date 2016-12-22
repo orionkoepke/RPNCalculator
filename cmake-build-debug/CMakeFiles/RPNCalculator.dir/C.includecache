@@ -11,6 +11,8 @@ string.h
 -
 stdio.h
 -
+malloc.h
+-
 Solver.h
 C:/Users/koepk/Desktop/RPNCalculator/Solver.h
 Stack.h

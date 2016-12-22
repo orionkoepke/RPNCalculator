@@ -1,10 +1,11 @@
 /*
  * Author: Orion Koepke
- * Date Last Edited: 12/18/16
+ * Date Last Edited: 12/22/16
  */
 
 #include <string.h>
 #include <stdio.h>
+#include <malloc.h>
 
 #include "Solver.h"
 #include "Stack.h"
@@ -58,23 +59,28 @@ int isOperator(char* operator)
 {
     int answer = 0;
 
+    //If operator is "+"
     if(strcmp(operator, "+") == 0)
     {
         answer = 1;
     }
+        //else if operator is "-"
     else if(strcmp(operator, "-") == 0)
     {
         answer = 1;
     }
+        //else if operator is "/"
     else if(strcmp(operator, "/") == 0)
     {
         answer = 1;
     }
+        //else if operator is "*"
     else if(strcmp(operator, "*") == 0)
     {
         answer = 1;
     }
 
+    //else operator is not a known operator and will return the default value 0.
     return answer;
 }
 
@@ -88,32 +94,41 @@ double preformOperation(double firstNum, double secondNum, char* operator)
 {
     double answer = 0;
 
+    //If operator is "+"
     if(strcmp(operator, "+") == 0)
     {
         answer = firstNum + secondNum;
     }
+        //else if operator is "-"
     else if(strcmp(operator, "-") == 0)
     {
         answer = firstNum - secondNum;
     }
+        //else if operator is "*"
     else if(strcmp(operator, "*") == 0)
     {
         answer = firstNum * secondNum;
     }
+        //else if operator is "/"
     else if(strcmp(operator, "/") == 0)
     {
+        //If there is not going to be a divide by zero error
         if(secondNum != 0)
         {
             answer = firstNum / secondNum;
         }
     }
 
+    //else operator is not a known operator and will return the default value 0.
     return answer;
 }
 
-/* double getOutput(char* input)
- * const char* input - an expression in reverse polish notation
- *
+/* double getOutput(const char* input, double* output)
+ * const char* input - a proper reverse polish notation expression
+ * double* output - the value of the proper reverse polish notation expression in input
+ * This function puts the value of the reverse polish notation expression in input into output
+ * and returns 1 if input is a proper reverse polish notation expression, and puts 0 in output
+ * and returns 0 otherwise.
  */
 double getOutput(const char* input, double* output)
 {
@@ -123,7 +138,10 @@ double getOutput(const char* input, double* output)
     char* token;        //The number or operation the program is currently looking at.
     char inputCopy[strlen(input) + 1]; //A copy of input so input is not changed.
 
-    //TODO Make sure stack is initialized
+    //Initialize stack.
+    stack = *((Stack*) malloc(sizeof(Stack)));
+    stack.head = 0;
+    stack.length = 0;
 
     //Copy input into inputCopy.
     strncpy(inputCopy, input, sizeof(inputCopy));
@@ -142,18 +160,30 @@ double getOutput(const char* input, double* output)
             //Else if token is an operation pop two numbers off of stack and push the result back on stack.
         else if(isOperator(token))
         {
+            //Get the second number off stack and remove it from stack.
             secondNum = peek(stack);
             pop(&stack);
+
+            //Get the first number off stack and remove it from stack.
             firstNum = peek(stack);
             pop(&stack);
+
+            //Push firstNum operand secondNum on to stack.
             push(&stack, preformOperation(firstNum, secondNum, token));
         }
             //There is an error: free the stack and return 0.
         else
         {
-            printf("Error\n");
+            //Print error.
+            printf("Error: %s is not a valid operator.\n", token);
+
+            //make output equal to zero.
             (*output) = 0;
-            //popAll(&stack); Fix This
+
+            //Delete the stack.
+            popAll(&stack);
+            free(&stack);
+
             return 0;
         }
 
@@ -161,8 +191,31 @@ double getOutput(const char* input, double* output)
         token = strtok(NULL, " ");
     }
 
-    //The number on the top of the stack is the answer to input.
-    (*output) = peek(stack);
-    //popAll(&stack); TODO Fix This
-    return 1;
+    //If the stack has more than or less than one thing on it, there is an error.
+    if(stack.length != 1)
+    {
+        //Print error.
+        printf("Error: Not the correct number of operands for the number of operators.\n", token);
+
+        //make output equal to zero.
+        (*output) = 0;
+
+        //Delete the stack.
+        popAll(&stack);
+        free(&stack);
+
+        return 0;
+    }
+        //Else the answer to the reverse polish notation expression in input is the number on the top of the stack.
+    else
+    {
+        //Make output equal to the number on the top of stack.
+        (*output) = peek(stack);
+
+        //Delete the stack.
+        popAll(&stack);
+        free(&stack);
+
+        return 1;
+    }
 }

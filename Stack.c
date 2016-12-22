@@ -1,6 +1,6 @@
 /*
  * Author: Orion Koepke
- * Date Last Edited: 12/18/16
+ * Date Last Edited: 12/22/16
  */
 
 #include <stdio.h>
@@ -16,10 +16,15 @@
  */
 void push(Stack* stack, double num)
 {
+    //Initialize a new Node.
     Node* newHead = (Node *) malloc(sizeof(Node));
     newHead->num = num;
     newHead->next = stack->head;
+
+    //Make the new Node the head of stack.
     stack->head = newHead;
+
+    //Increase the length of stack by one.
     stack->length = stack->length + 1;
 }
 
@@ -29,10 +34,12 @@ void push(Stack* stack, double num)
  */
 double peek(Stack stack)
 {
+    //If there is something on stack.
     if(stack.head != 0)
     {
         return stack.head->num;
     }
+        //Else if there is nothing on the stack
     else
     {
         return 0;
@@ -46,11 +53,19 @@ double peek(Stack stack)
  */
 void pop(Stack* stack)
 {
+    //If there is something on stack.
     if (stack->head != 0)
     {
+        //Get the current head of stack.
         Node* head = stack->head;
+
+        //Make the head of the stack the next Node after the current head or null if there is no next Node.
         stack->head = head->next;
+
+        //Subtract one from the length of stack.
         stack->length = stack->length - 1;
+
+        //Free the current head of the stack.
         head->next = 0;
         free(head);
     }
@@ -60,13 +75,15 @@ void pop(Stack* stack)
  * Stack* stack - the current stack
  * This function frees the whole stack.
  */
-//TODO Fix This
 void popAll(Stack* stack)
 {
-    printf("length :: %i\n", stack->length);
+    //If there is something on stack.
     if(stack->head != 0)
     {
+        //pop the current head of stack.
         pop(stack);
+
+        //pop everything else off stack.
         popAll(stack);
     }
 }
