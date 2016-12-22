@@ -23,16 +23,21 @@ reverse polish notation expression entered.
 
 #Examples
 `C:\Users\name\Desktop>RPNCalculator.exe "3 3 +"`
+
 `3 3 + = 6.000`
 
 `C:\Users\name\Desktop>RPNCalculator.exe 3 3 +`
+
 `Too many arguments entered.`
 
 `C:\Users\name\Desktop>RPNCalculator.exe`
+
 `Not enough arguments entered.`
 
 `C:\Users\name\Desktop>RPNCalculator.exe "3 3 ^"`
+
 `Error: ^ is not a valid operator.`
 
 `C:\Users\name\Desktop>RPNCalculator.exe "3 3"`
+
 `Error: Not the correct number of operands for the number of operators.`
