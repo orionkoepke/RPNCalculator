@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+
 #include "Solver.h"
 
 /* int correctNumArgs(int argc)

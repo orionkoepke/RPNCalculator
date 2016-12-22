@@ -195,7 +195,7 @@ double getOutput(const char* input, double* output)
     if(stack.length != 1)
     {
         //Print error.
-        printf("Error: Not the correct number of operands for the number of operators.\n", token);
+        printf("Error: Not the correct number of operands for the number of operators.\n");
 
         //make output equal to zero.
         (*output) = 0;
